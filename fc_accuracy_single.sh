@@ -1,16 +1,19 @@
 #! /bin/bash
 
+# Declare the log file variable
+log_file="rx_poc.log"
+
 # Extract the current day, month, and year
-year=$(tail -1 rx_poc.log | cut -d " " -f1)
-month=$(tail -1 rx_poc.log | cut -d " " -f2)
-day=$(tail -1 rx_poc.log | cut -d " " -f3)
+year=$(tail -1 $log_file | cut -d " " -f1)
+month=$(tail -1 $log_file | cut -d " " -f2)
+day=$(tail -1 $log_file | cut -d " " -f3)
 
 # Extract Today's current Temperature
-obs_temp=$(tail -1 rx_poc.log | cut -d " " -f4)
+obs_temp=$(tail -1 $log_file | cut -d " " -f4)
 echo "Today's temperature is $obs_temp"
 
 # Extract the forecasted temprature for today
-forecasted_for_today=$(tail -2 rx_poc.log | head -1 | cut -d " " -f5)
+forecasted_for_today=$(tail -2 $log_file | head -1 | cut -d " " -f5)
 echo "Forecasted temperature for today is $forecasted_for_today"
 
 # Calculate the difference between today and forecasted temperature
