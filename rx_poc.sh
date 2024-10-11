@@ -1,4 +1,5 @@
 #! /bin/bash
+# This script extracts the weather report from the raw file and appends to the log
 
 city=Casablanca
 

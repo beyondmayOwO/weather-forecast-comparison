@@ -1,4 +1,5 @@
 #! /bin/bash
+# This script calculates the weather accuracy for a single day using the infos from the log
 
 # Declare the log file variable
 log_file="rx_poc.log"
@@ -22,29 +23,22 @@ accuracy_range=$(($obs_temp-$forecasted_for_today))
 [ "$accuracy_range" -lt 0 ] && accuracy_range=$((-$accuracy_range))
 
 # Calculate the accuracy range then assign the label
-if [ "$accuracy_range" -le 1 ]
-then
+if [ "$accuracy_range" -le 1 ]; then
   accuracy_label=excellent
-elif [ "$accuracy_range" -eq 2 ]
-then
+elif [ "$accuracy_range" -eq 2 ]; then
   accuracy_label=good
-elif [ "$accuracy_range" -eq 3 ]
-then
+elif [ "$accuracy_range" -eq 3 ]; then
   accuracy_label=fair
-elif [ "$accuracy_range" -ge 4 ]
-then
+elif [ "$accuracy_range" -ge 4 ]; then
   accuracy_label=poor
 fi
 
 # Calculate the forecast accuracy
-if [ "$obs_temp" -eq "$forecasted_for_today" ]
-then
+if [ "$obs_temp" -eq "$forecasted_for_today" ]; then
   echo "Today's temperature is the same as the forecasted temperature. Forecast accuracy is $accuracy_label."
-elif [ "$obs_temp" -gt "$forecasted_for_today" ]
-then
+elif [ "$obs_temp" -gt "$forecasted_for_today" ]; then
   echo "Today's temperature is hotter by $accuracy_range. Forecast accuracy is $accuracy_label."
-elif [ "$obs_temp" -lt "$forecasted_for_today" ]
-then
+elif [ "$obs_temp" -lt "$forecasted_for_today" ]; then
   echo "Today's temperature is colder by $accuracy_range. Forecast accuracy is $accuracy_label."
 fi
 

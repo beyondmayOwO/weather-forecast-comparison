@@ -1,4 +1,5 @@
 #! /bin/bash
+# This script calculates the weather accuracy for all days using the infos from the log (Alternate version of a single day)
 
 log_file="rx_poc.log"
 
